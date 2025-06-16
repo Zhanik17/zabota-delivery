@@ -4,14 +4,74 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Забота+ | Доставка</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      background-color: #e8f1f9;
+      padding: 2em;
+      color: #333;
+    }
+    h1 {
+      color: #1b5e20;
+      margin-bottom: 0.5em;
+    }
+    p {
+      font-size: 1.1em;
+      margin-bottom: 1.5em;
+    }
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 1.5em;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      width: 100%;
+      padding: 0.8em;
+      margin: 0.5em 0;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #388e3c;
+    }
+  </style>
 </head>
-<body style="font-family: sans-serif; text-align: center; padding: 2em;">
+<body>
   <h1>Забота+ | Доставка</h1>
-  <p>Служба доставки продуктов, еды, лекарств и посылок</p>
-  <p><b>Город:</b> Акколь</p>
-  <p><b>Для заказа:</b></p>
-  <a href="https://wa.me/77718748634" style="font-size: 1.2em; color: green;">
-    Написать в WhatsApp
-  </a>
+  <p>Продукты, еда, лекарства, посылки, а также развозка детей в школу, садик, кружки</p>
+  <form id="deliveryForm">
+    <input type="text" id="from" placeholder="Откуда забрать" required>
+    <input type="text" id="to" placeholder="Куда доставить / отвезти" required>
+    <input type="text" id="item" placeholder="Что доставить или кого везти" required>
+    <input type="text" id="time" placeholder="Время доставки / развозки" required>
+    <button type="submit">Отправить заявку в WhatsApp</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('deliveryForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const from = document.getElementById('from').value;
+      const to = document.getElementById('to').value;
+      const item = document.getElementById('item').value;
+      const time = document.getElementById('time').value;
+      const message = `Заявка на доставку/развозку:\nОткуда: ${from}\nКуда: ${to}\nЧто: ${item}\nВремя: ${time}`;
+      const encoded = encodeURIComponent(message);
+      const phone = "77718748634";
+      window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
+    });
+  </script>
 </body>
 </html>
